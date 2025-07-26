@@ -1,28 +1,29 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
+import HomeScreen from './screens/HomeScreen';
+import AboutScreen from './screens/AboutScreen';
+import ContactScreen from './screens/ContactScreen'; // <-- ADD THIS LINE
+import RegistrationScreen from './screens/RegistrationScreen';
+import WeatherScreen from './screens/WeatherScreen';
+import NewsScreen from './screens/NewsScreen';
+import PhotoCaptureScreen from './screens/PhotoCaptureScreen';
 
-function App() {
-  const isDarkMode = useColorScheme() === 'dark';
+const Stack = createNativeStackNavigator();
 
-  return (
-    <View style={styles.container}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <NewAppScreen templateFileName="App.tsx" />
-    </View>
-  );
+export default function App() {
+ return (
+   <NavigationContainer>
+     <Stack.Navigator initialRouteName="Home">
+       <Stack.Screen name="Home" component={HomeScreen} />
+       <Stack.Screen name="About" component={AboutScreen} />
+       <Stack.Screen name="Contact" component={ContactScreen} />
+       <Stack.Screen name="Register" component={RegistrationScreen} />
+       <Stack.Screen name="Weather" component={WeatherScreen} />
+       <Stack.Screen name="News" component={NewsScreen} />
+       <Stack.Screen name="PhotoCapture" component={PhotoCaptureScreen} />
+     </Stack.Navigator>
+   </NavigationContainer>
+ );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
-
-export default App;
